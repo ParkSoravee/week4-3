@@ -1,9 +1,10 @@
 //0033
 #include<iostream>
+#include<algorithm>
 using namespace std;
 
 void getComments(int*, int);
-void sortComments(int*, int );
+void sortComments(int*, int);
 void showVals(int*, int);
 void findMost(int*, int);
 
@@ -53,41 +54,47 @@ void showVals(int* pComment, int n)
 }
 void findMost(int* pComment, int n)
 {
-	int f = 0;
-	int mode[1000] = {0};
-	int x = *pComment;
 	
-//	mode[0] = *pComment;
-	int fMode = 0;
+	int mode[1000];
+	int fMode[1000];
+	int x = *pComment;
+	int f = 0;
 	int j = 0;
-	*(pComment + n + 1) = -1;
-	for (int i = 0; i <= n; i++)
+	
+	for (int i = 0; i < n; i++)
 	{
 		if (*(pComment + i) == x)
 		{
 			f++;
-			
 		} 
 		else
 		{
-			if (f > fMode)
-			{
-				fMode = f;
-				mode[j] = *(pComment + i -1);
-			}
-			else if(f == fMode)
-			{
-				
-				j++;
-				mode[j] = *(pComment + i -1);
-			}
 			x = *(pComment + i);
 			f = 1;
 		}
+
+		if (*(pComment + i + 1) != x or i == n - 1)
+		{
+			fMode[j] = f;
+			mode[j] = *(pComment + i);
+			j++;
+		}
 	}
 	
-	for (int i=0;i<j+1;i++)
+	int max = 0;
+	for (int i=0;i<j;i++)
 	{
-		cout << mode[i] << " ";
+		if (fMode[i] >= max)
+		{
+			max = fMode[i];
+		}
+	}
+	
+	for (int i=0;i<j;i++)
+	{
+		if (fMode[i] == max)
+		{
+			cout << mode[i] << " ";
+		}
 	}
 }
