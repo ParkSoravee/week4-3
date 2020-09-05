@@ -5,7 +5,6 @@ using namespace std;
 
 void getComments(int*, int);
 void sortComments(int*, int);
-void showVals(int*, int);
 void findMost(int*, int);
 
 int main()
@@ -16,8 +15,6 @@ int main()
 	cin >> like;
 	getComments(pComment, like);
 	sortComments(pComment, like);
-//	showVals(pComment, like);
-//	cout << endl;
 	findMost(pComment, like);
 
 	return 0;
@@ -45,13 +42,7 @@ void sortComments(int* pComment, int n)
 		}
 	}
 }
-void showVals(int* pComment, int n)
-{
-	for (int i=0;i<n;i++)
-	{
-		cout << *(pComment + i) << endl;
-	}
-}
+
 void findMost(int* pComment, int n)
 {
 	
